@@ -137,6 +137,19 @@ print(prob)
 #### Interpretation
 The binomial distribution is appropriate when there are only two outcomes per trial: success or failure.
 
+#### Intuition
+Think of it as counting how many successes you get when you repeat the same experiment many times.
+
+#### Real-world example
+- Number of correct answers on a 20-question multiple-choice test when each question has a fixed chance of being correct.
+- Number of defective items in a batch of manufactured products.
+
+#### Simple sketch
+```text
+Success/Failure trials -> counts of successes
+Example: 0, 1, 2, 3, ... , n
+```
+
 ---
 
 ### 2. Poisson Distribution
@@ -177,6 +190,20 @@ print(prob)
 
 #### Interpretation
 The Poisson distribution is often a good model when events are rare and independent, and the rate is roughly constant.
+
+#### Intuition
+It models how many times an event happens in a time interval when the average rate is known.
+
+#### Real-world example
+- Number of calls received by a call center in one hour.
+- Number of earthquakes in a region over a year.
+- Number of goals scored in a hockey game.
+
+#### Simple sketch
+```text
+Rare events over time -> count of events
+Example: 0, 1, 2, 3, ...
+```
 
 ---
 
@@ -221,6 +248,20 @@ print(pdf, cdf)
 #### Interpretation
 The exponential distribution has a long right tail and is commonly used for waiting times.
 
+#### Intuition
+It tells you how long you must wait until the next event occurs.
+
+#### Real-world example
+- Time between customer arrivals at a store.
+- Time until the next bus arrives.
+- Time until the first goal in a soccer match.
+
+#### Simple sketch
+```text
+Waiting time
+0 ---- small ---- moderate ---- large
+```
+
 ---
 
 ### 4. Normal Distribution
@@ -260,6 +301,23 @@ print(pdf, cdf)
 #### Interpretation
 The normal distribution is symmetric, bell-shaped, and often appears when many independent influences combine.
 
+#### Intuition
+It is the classic “bell curve” that appears when many small effects add up.
+
+#### Real-world example
+- Heights of adults in a population.
+- Test scores in a large class.
+- Measurement errors in experiments.
+
+#### Simple sketch
+```text
+bell-shaped curve
+      /\
+     /  \
+    /    \
+---/      \---
+```
+
 ---
 
 ### 5. Lognormal Distribution
@@ -298,6 +356,23 @@ print(pdf)
 
 #### Interpretation
 The lognormal distribution is right-skewed and is useful when values cannot be negative and growth is multiplicative.
+
+#### Intuition
+It describes variables that grow by multiplying rather than adding.
+
+#### Real-world example
+- Income distributions.
+- Insurance claim amounts.
+- Sizes of particles or biological organisms.
+
+#### Simple sketch
+```text
+right-skewed curve
+   /\
+  /  \
+ /    \
+/      \
+```
 
 ---
 
