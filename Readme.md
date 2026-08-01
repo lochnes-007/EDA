@@ -312,12 +312,102 @@ A practical workflow is:
 5. **Check whether the fit is good in the center and the tails**.
 6. **Interpret the result with domain knowledge**.
 
-## Quick Summary
+## Visual Summary and Example Plots
 
-- Use **binomial** for counts of successes in repeated trials.
-- Use **Poisson** for counts of rare events in an interval.
-- Use **exponential** for waiting times.
-- Use **normal** for symmetric continuous measurements.
-- Use **lognormal** for positive skewed measurements with multiplicative growth.
+### Shape intuition
+
+Here is a simple diagram-style summary of the main shapes:
+
+```text
+Binomial     : discrete bar-like distribution, centered around np
+Poisson      : discrete count distribution, often right-skewed for small lambda
+Exponential  : continuous, decays quickly, strong right tail
+Normal       : symmetric bell curve
+Lognormal    : right-skewed and positive-valued
+```
+
+### Small plotting examples
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm, expon, poisson, lognorm
+
+# 1) Normal distribution
+x = np.linspace(-4, 4, 400)
+plt.figure(figsize=(8, 4))
+plt.plot(x, norm.pdf(x), label='Normal')
+plt.title('Normal Distribution')
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# 2) Exponential distribution
+x = np.linspace(0, 5, 400)
+plt.figure(figsize=(8, 4))
+plt.plot(x, expon.pdf(x, scale=1), label='Exponential')
+plt.title('Exponential Distribution')
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# 3) Poisson distribution
+k = np.arange(0, 12)
+plt.figure(figsize=(8, 4))
+plt.bar(k, poisson.pmf(k, mu=3), label='Poisson(3)')
+plt.title('Poisson Distribution')
+plt.xlabel('k')
+plt.ylabel('Probability')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# 4) Lognormal distribution
+x = np.linspace(0.01, 5, 400)
+plt.figure(figsize=(8, 4))
+plt.plot(x, lognorm.pdf(x, s=0.7), label='Lognormal')
+plt.title('Lognormal Distribution')
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+
+### Example interpretation
+
+- A **normal** distribution looks symmetric and bell-shaped.
+- An **exponential** distribution falls quickly and has a long right tail.
+- A **poisson** distribution is a discrete count distribution.
+- A **lognormal** distribution is skewed to the right and only defined for positive values.
+
+### A simple comparison workflow
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Example data
+x = np.random.normal(0, 1, 1000)
+
+# Empirical histogram
+plt.figure(figsize=(8, 4))
+plt.hist(x, bins=30, density=True, alpha=0.6, label='Observed data')
+
+# Theoretical normal curve
+xx = np.linspace(x.min(), x.max(), 300)
+plt.plot(xx, norm.pdf(xx, x.mean(), x.std()), 'r-', lw=2, label='Normal model')
+plt.title('Observed Data vs Normal Model')
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
 
 These distributions are useful because they give a compact mathematical description of the shape of a dataset, which helps you reason about uncertainty and compare groups.
